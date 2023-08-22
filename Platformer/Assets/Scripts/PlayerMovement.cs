@@ -1,5 +1,8 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Animator))]
+
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _playerSpeed;
@@ -26,12 +29,13 @@ public class PlayerMovement : MonoBehaviour
             _playerVelocity.y = 0f;
         }
 
+        const string speed = "speed";
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         int maxLength = 1;
         float jumpValue = -3f;
 
         _controller.Move(move * Time.deltaTime * _playerSpeed);
-        _animator.SetFloat("speed", Vector3.ClampMagnitude(move, maxLength).magnitude);
+        _animator.SetFloat(speed, Vector3.ClampMagnitude(move, maxLength).magnitude);
 
         if (move != Vector3.zero)
         {

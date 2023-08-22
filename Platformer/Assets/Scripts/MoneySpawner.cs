@@ -30,6 +30,7 @@ public class MoneySpawner : MonoBehaviour
 
     private Vector3 GetRandomPosition()
     {
-        return new Vector3(transform.position.x + Random.Range(-_radius, _radius), transform.position.y, transform.position.z + Random.Range(-_radius, _radius));
+        return new Vector3(transform.position.x + Random.Range(-_radius, _radius),
+            transform.position.y, transform.position.z + Random.Range(-_radius, _radius));
     }
 }
