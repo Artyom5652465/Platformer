@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Collections;
 [RequireComponent(typeof(Slider))]
 
 public class FillBarReenderer : MonoBehaviour
@@ -11,28 +11,34 @@ public class FillBarReenderer : MonoBehaviour
     [SerializeField] private Image _fill;
     [SerializeField] private float _recoveryRate;
     [SerializeField] private float _finalValue;
+    [SerializeField] private Player _player;
 
     private void Start()
     {
         _slider = GetComponent<Slider>(); 
     }
 
-    private void Update()
+    private IEnumerator SetFillBar()
     {
-        _slider.value = Mathf.MoveTowards(_slider.value, _finalValue, _recoveryRate * Time.deltaTime);
-        _fill.color = _gradient.Evaluate(_slider.normalizedValue);
+        while (_slider.value != _finalValue)
+        {
+            _slider.value = Mathf.MoveTowards(_slider.value, _finalValue, _recoveryRate * Time.deltaTime);
+            _fill.color = _gradient.Evaluate(_slider.normalizedValue);
+
+            yield return null;
+        }
     }
 
-    public void SetMaxHealth(int maxHealth, int health)
+    public void SetMaxHealth()
     {
-        _slider.maxValue = maxHealth;
-        _slider.value = health;
-        _finalValue = health;
+        _slider.maxValue = _slider.value = _finalValue = _player.GetMaxHealth();
         _fill.color = _gradient.Evaluate(1f);
     }
 
-    public void SetCurrentHealth(int health)
+    public void SetCurrentHealth()
     {
-        _finalValue = health;        
+        _finalValue = _player.GetCurrentHealth();
+
+        StartCoroutine(SetFillBar());
     }
 }
