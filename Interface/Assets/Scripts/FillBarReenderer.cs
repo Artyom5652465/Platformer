@@ -6,16 +6,25 @@ using System.Collections;
 public class FillBarReenderer : MonoBehaviour
 {
     private Slider _slider;
+    private Coroutine _coroutineOfFillingBar;
 
     [SerializeField] private Gradient _gradient;
     [SerializeField] private Image _fill;
     [SerializeField] private float _recoveryRate;
     [SerializeField] private float _finalValue;
     [SerializeField] private Player _player;
-
-    private void Start()
+ 
+    private void OnEnable()
     {
-        _slider = GetComponent<Slider>(); 
+        _slider = GetComponent<Slider>();
+
+        _player.Set += SetMaxHealth;
+        _player.Changed += SetCurrentHealth;
+    }
+
+    private void OnDisable()
+    {
+        _player.Set -= SetMaxHealth;
     }
 
     private IEnumerator SetFillBar()
@@ -39,6 +48,11 @@ public class FillBarReenderer : MonoBehaviour
     {
         _finalValue = _player.GetCurrentHealth();
 
-        StartCoroutine(SetFillBar());
+        if(_coroutineOfFillingBar != null)
+        {
+            StopCoroutine(_coroutineOfFillingBar);
+        }
+
+        _coroutineOfFillingBar = StartCoroutine(SetFillBar());
     }
 }

@@ -535,7 +535,19 @@ MonoBehaviour:
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2069288353}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Heal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1130318624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,6 +605,7 @@ GameObject:
   - component: {fileID: 1248354647}
   - component: {fileID: 1248354646}
   - component: {fileID: 1248354645}
+  - component: {fileID: 1248354648}
   m_Layer: 5
   m_Name: 'HealButton '
   m_TagString: Untagged
@@ -715,6 +728,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248354643}
   m_CullTransparentMesh: 1
+--- !u!114 &1248354648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248354643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b83ab04cd79674b833a271d943cee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 2069288353}
+  _button: {fileID: 0}
 --- !u!1 &1308466165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,33 +1357,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _currentHealth: 100
+  _healStrength: 0
+  _damage: 0
   _startEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1130318624}
-        m_TargetAssemblyTypeName: FillBarReenderer, Assembly-CSharp
-        m_MethodName: SetMaxHealth
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 100
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _event:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1130318624}
-        m_TargetAssemblyTypeName: FillBarReenderer, Assembly-CSharp
-        m_MethodName: SetCurrentHealth
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []

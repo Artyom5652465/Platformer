@@ -8,6 +8,18 @@ public class Player : MonoBehaviour
     [SerializeField] private UnityEvent _startEvent;
     [SerializeField] private UnityEvent _event;
 
+    public event UnityAction Set
+    {
+        add => _startEvent.AddListener(value);
+        remove => _startEvent.RemoveListener(value);
+    }
+
+    public event UnityAction Changed
+    {
+        add => _event.AddListener(value);
+        remove => _event.RemoveListener(value);
+    }
+
     private void Start()
     {
         _startEvent.Invoke();
